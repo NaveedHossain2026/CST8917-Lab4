@@ -12,19 +12,7 @@ Video Demo: https://youtu.be/1Ne2oWy8qY0
 
 ---
 
-## Architecture
 
-```
-Upload Image --> [ Blob Storage ] --> [ Event Grid ] --+--> [ process-image() ] --> [ image-results ]
-                   image-uploads       System Topic     |
-                                                          +--> [ audit-log() ] --> [ Table Storage ]
-```
-
-- **image-uploads** (Blob container) — receives uploaded images from the client
-- **Event Grid System Topic** — captures `Microsoft.Storage.BlobCreated` events
-- **process-image-sub** — filtered subscription (`.jpg` / `.png` only) → `process-image` function → writes metadata JSON to **image-results**
-- **audit-log-sub** — unfiltered subscription (all blobs in `image-uploads`) → `audit-log` function → writes an entry to the **processinglog** table
-- **client.html** — browser-based upload UI that polls `get-results` and `get-audit-log` for live updates
 
 ## Setup
 
