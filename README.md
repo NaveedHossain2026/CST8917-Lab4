@@ -1,1 +1,1 @@
-# CST8917-Lab4
+# Lab 4: PhotoPipe — Event-Driven Image Processing with Event Grid & Functions
